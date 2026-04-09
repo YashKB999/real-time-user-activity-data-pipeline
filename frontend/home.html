@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Home</title>
+
+<script>
+
+function sendEvent(){
+
+fetch('/log',{
+
+method:'POST',
+
+headers:{
+'Content-Type':'application/json'
+},
+
+body:JSON.stringify({
+
+page:"home",
+
+action:"button_click"
+
+})
+
+})
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Home Page</h1>
+
+<button onclick="sendEvent()">Click Me</button>
+
+</body>
+
+</html>
