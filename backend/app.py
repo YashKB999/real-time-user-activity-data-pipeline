@@ -1,4 +1,8 @@
 from flask import Flask, request, render_template
+from producer import send_event
+
+
+# Sending activity to kafka
 
 app = Flask(__name__, template_folder='../frontend')
 
@@ -11,7 +15,10 @@ def log():
 
     event = request.json
 
-    print("EVENT RECEIVED:", event)
+    # print("EVENT RECEIVED:", event)
+
+    send_event(event)
+    print("EVENT SENT TO KAFKA:", event)
 
     return {"status":"received"}
 
