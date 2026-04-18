@@ -3,8 +3,7 @@
 <html>
 
 <head>
-
-<title>Home</title>
+<title>Products</title>
 
 <script>
 
@@ -21,8 +20,8 @@ headers:{
 body:JSON.stringify({
 
 user_id: "U" + Math.floor(Math.random()*1000),
-page:"home",
-action:"button_click",
+page:"products",   // ← different from home
+action:"view_product",   // ← different action
 product_id: "P" + Math.floor(Math.random()*100),
 device: ["mobile","desktop"][Math.floor(Math.random()*2)],
 location: ["India","US","UK"][Math.floor(Math.random()*3)],
@@ -40,9 +39,9 @@ event_time: new Date().toISOString()
 
 <body>
 
-<h1>Home Page</h1>
+<h1>Products Page</h1>
 
-<button onclick="sendEvent()">Click Me</button>
+<button onclick="sendEvent()">View Product</button>
 
 </body>
 

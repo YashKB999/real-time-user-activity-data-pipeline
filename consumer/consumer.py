@@ -15,9 +15,15 @@ conn = pyodbc.connect(
 cursor = conn.cursor()
 
 consumer = KafkaConsumer(
-    'website_events',
-    bootstrap_servers='localhost:9092',
-    value_deserializer=lambda x: json.loads(x.decode('utf-8'))
+    'website_events',  # topic
+
+    bootstrap_servers='localhost:9092',  # Kafka connection
+
+    value_deserializer=lambda x: json.loads(x.decode('utf-8')),
+
+    auto_offset_reset='earliest',  # read from start if no offset
+
+    group_id='my-group-1'  # track consumption properly
 )
 
 print("Listening to Kafka topic...")
@@ -26,9 +32,14 @@ for message in consumer:
     data = message.value
 
     cursor.execute(
-        "INSERT INTO website_logs (page, action) VALUES (?, ?)",
-        data['page'],
-        data['action']
+    "INSERT INTO website_logs (user_id, page, action, event_time_utc, product_id, device, location) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    data['user_id'],
+    data['page'],
+    data['action'],
+    data['event_time'],
+    data['product_id'],
+    data['device'],
+    data['location']
     )
 
     conn.commit()
