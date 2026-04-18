@@ -1,4 +1,14 @@
-# Real-Time User Activity Data Pipeline
+## 🚀 Real-Time User Activity Data Pipeline
+
+An end-to-end data engineering project that captures, processes, and analyzes user activity using Kafka, Spark, and Delta Lake.
+
+### 🔥 Key Highlights
+
+* Real-time event ingestion using Kafka
+* Partitioned streaming architecture for scalability
+* Data validation and bad record handling
+* Distributed processing using Databricks (PySpark)
+* Optimized storage using partitioned Delta tables
 
 ## 📌 Overview
 
